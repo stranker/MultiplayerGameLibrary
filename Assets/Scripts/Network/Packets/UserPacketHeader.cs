@@ -14,6 +14,7 @@ public class UserPacketHeader : ISerializablePacket
     public uint id;
     public uint objectId;
     public ushort packetType { get; set; }
+    public bool reliable { get; set; }
 
     public void Serialize(Stream stream)
     {

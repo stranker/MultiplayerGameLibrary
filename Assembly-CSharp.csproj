@@ -60,7 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Lobby.cs" />
+    <Compile Include="Assets\Ball.cs" />
     <Compile Include="Assets\Scripts\Game\Network\LobbyManager.cs" />
     <Compile Include="Assets\Scripts\Game\Network\MessagesManager.cs" />
     <Compile Include="Assets\Scripts\Game\Network\Packets\GamePackets.cs" />
@@ -70,30 +70,31 @@
     <Compile Include="Assets\Scripts\Network\NetworkManager.cs" />
     <Compile Include="Assets\Scripts\Network\Packets\NetworkPacket.cs" />
     <Compile Include="Assets\Scripts\Network\Packets\PacketHeader.cs" />
+    <Compile Include="Assets\Scripts\Network\Packets\PacketQueue.cs" />
     <Compile Include="Assets\Scripts\Network\Packets\PacketsManager.cs" />
-    <Compile Include="Assets\Scripts\Network\Packets\UserNetworkPacket.cs" />
     <Compile Include="Assets\Scripts\Network\Packets\UserPacketHeader.cs" />
     <Compile Include="Assets\Scripts\Network\UdpConnection.cs" />
     <Compile Include="Assets\Scripts\UI\ChatScreen.cs" />
+    <Compile Include="Assets\Scripts\UI\Lobby.cs" />
     <Compile Include="Assets\Scripts\UI\NetworkScreen.cs" />
     <Compile Include="Assets\Scripts\Utils\CRC32.cs" />
     <Compile Include="Assets\Scripts\Utils\ManagersInstantiator.cs" />
     <Compile Include="Assets\Scripts\Utils\MonoBehaviourSingleton.cs" />
     <Compile Include="Assets\Scripts\Utils\Singleton.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/Daniel/Documents/Proyectos/Unity/MultiplayerGameLibrary/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/Administrador/Documents/MultiplayerGameLibrary/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/Daniel/Documents/Proyectos/Unity/MultiplayerGameLibrary/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/Administrador/Documents/MultiplayerGameLibrary/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/Daniel/Documents/Proyectos/Unity/MultiplayerGameLibrary/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/Administrador/Documents/MultiplayerGameLibrary/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/Daniel/Documents/Proyectos/Unity/MultiplayerGameLibrary/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/Administrador/Documents/MultiplayerGameLibrary/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/Users/Daniel/Documents/Proyectos/Unity/MultiplayerGameLibrary/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>C:/Users/Administrador/Documents/MultiplayerGameLibrary/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -290,6 +291,9 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
     </Reference>
+    <Reference Include="Vuforia.UnityExtensions">
+      <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/VuforiaSupport/Managed/Runtime/Vuforia.UnityExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.GoogleAudioSpatializer">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityGoogleAudioSpatializer/RuntimeEditor/UnityEngine.GoogleAudioSpatializer.dll</HintPath>
     </Reference>
@@ -297,13 +301,13 @@
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>C:/Users/Daniel/Documents/Proyectos/Unity/MultiplayerGameLibrary/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>C:/Users/Administrador/Documents/MultiplayerGameLibrary/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>C:/Users/Daniel/Documents/Proyectos/Unity/MultiplayerGameLibrary/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/Administrador/Documents/MultiplayerGameLibrary/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>C:/Users/Daniel/Documents/Proyectos/Unity/MultiplayerGameLibrary/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>C:/Users/Administrador/Documents/MultiplayerGameLibrary/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

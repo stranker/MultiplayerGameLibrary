@@ -12,6 +12,7 @@ enum PacketType
 public class PacketHeader : ISerializablePacket
 {
     public ushort packetType { get ; set; }
+    public bool reliable { get ; set; }
 
     public void Serialize(Stream stream)
     {

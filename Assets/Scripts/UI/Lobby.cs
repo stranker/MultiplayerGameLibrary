@@ -33,12 +33,6 @@ public class Lobby : MonoBehaviourSingleton<Lobby>
         LobbyPacket packet = new LobbyPacket();
         packet.Deserialize(stream);
         string users = packet.payload.users;
-        
-        if (NetworkManager.Instance.isServer)
-        {
-            LobbyManager.Instance.SendUsers(NetworkManager.Instance.GetUserList(), senderId, 0);
-        }
-
         lobby.text = "";
         string[] usersProcessed = users.Split(',');
         foreach (string user in usersProcessed)

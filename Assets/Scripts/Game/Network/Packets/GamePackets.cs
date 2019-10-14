@@ -15,18 +15,25 @@ public class PositionPacket : GamePacket<PositionData>
 {
     public PositionPacket() : base((ushort)UserPacketType.Position)
     {
+        reliable = false;
     }
 
     protected override void OnDeserialize(Stream stream)
     {
         BinaryReader br = new BinaryReader(stream);
-        //payload = br.ReadString();
+        PositionData positionData = new PositionData();
+        positionData.position.x = br.ReadSingle();
+        positionData.position.y = br.ReadSingle();
+        positionData.position.z = br.ReadSingle();
+        payload = positionData;
     }
 
     protected override void OnSerialize(Stream stream)
     {
         BinaryWriter bw = new BinaryWriter(stream);
-        //bw.Write(payload);
+        bw.Write(payload.position.x);
+        bw.Write(payload.position.y);
+        bw.Write(payload.position.z);
     }
 }
 
@@ -34,6 +41,7 @@ public class LobbyPacket : GamePacket<LobbyData>
 {
     public LobbyPacket() : base((ushort)UserPacketType.Lobby)
     {
+        reliable = true;
     }
 
     protected override void OnDeserialize(Stream stream)
@@ -56,6 +64,7 @@ public class StringMessagePacket : GamePacket<MessageData>
 {
     public StringMessagePacket() : base((ushort)UserPacketType.Message)
     {
+        reliable = true;
     }
 
     protected override void OnDeserialize(Stream stream)

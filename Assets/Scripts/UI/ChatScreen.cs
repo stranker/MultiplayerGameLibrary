@@ -42,7 +42,6 @@ public class ChatScreen : MonoBehaviourSingleton<ChatScreen>
         packet.Deserialize(stream);
         string username = packet.payload.username;
         string message = packet.payload.message;
-
         if (NetworkManager.Instance.isServer)
         {
             NetworkManager.Instance.AddUser(username);

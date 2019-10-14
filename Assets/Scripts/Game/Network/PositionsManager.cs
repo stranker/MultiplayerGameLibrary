@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class PositionData
 {
-    public float x;
-    public float y;
-    public float z;
+    public Vector3 position;
 }
 
 public class PositionsManager : Singleton<PositionsManager>

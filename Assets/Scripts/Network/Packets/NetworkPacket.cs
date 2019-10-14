@@ -4,6 +4,7 @@ using System.IO;
 public abstract class NetworkPacket<P> : ISerializablePacket
 {
     public ushort packetType { get; set; }
+    public bool reliable { get ; set; }
     public P payload;
 
     public NetworkPacket(ushort type)
