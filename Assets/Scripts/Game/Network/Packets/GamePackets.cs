@@ -2,16 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-public abstract class GameNetworkPacket<T> : NetworkPacket<T>
+public abstract class GamePacket<T> : NetworkPacket<T>
 {
-    public GameNetworkPacket(UserPacketType type) : base((ushort)type)
+    public ushort userPacketType { get; set; }
+    public GamePacket(ushort userPacketType) : base((ushort)PacketType.User)
     {
+        this.userPacketType = userPacketType;
     }
 }
 
-public class PositionPacket : GameNetworkPacket<Dictionary<string,float>>
+public class PositionPacket : GamePacket<PositionData>
 {
-    public PositionPacket() : base(UserPacketType.Position)
+    public PositionPacket() : base((ushort)UserPacketType.Position)
     {
     }
 
@@ -28,9 +30,9 @@ public class PositionPacket : GameNetworkPacket<Dictionary<string,float>>
     }
 }
 
-public class StringMessagePacket : GameNetworkPacket<MessageData>
+public class StringMessagePacket : GamePacket<MessageData>
 {
-    public StringMessagePacket() : base(UserPacketType.Message)
+    public StringMessagePacket() : base((ushort)UserPacketType.Message)
     {
     }
 
@@ -41,6 +43,7 @@ public class StringMessagePacket : GameNetworkPacket<MessageData>
         MessageData messageData = new MessageData();
         messageData.username = br.ReadString();
         messageData.message = br.ReadString();
+        payload = messageData;
     }
 
     protected override void OnSerialize(Stream stream)

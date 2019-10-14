@@ -32,7 +32,12 @@ public class PacketsManager : Singleton<PacketsManager>, IReceiveData
         byte[] bytes = SerializePacket(networkPacket, senderId, objectId);
 
         if (NetworkManager.Instance.isServer)
-            NetworkManager.Instance.Broadcast(bytes);
+        {
+            if (ipEndPoint != null)
+                NetworkManager.Instance.SendToClient(bytes, ipEndPoint);
+            else
+                NetworkManager.Instance.Broadcast(bytes);
+        }
         else
             NetworkManager.Instance.SendToServer(bytes);
     }
@@ -49,13 +54,13 @@ public class PacketsManager : Singleton<PacketsManager>, IReceiveData
 
         if ((PacketType)networkPacket.packetType == PacketType.User)
         {
-            UserNetworkPacket<T> userNetworkPacket = networkPacket as UserNetworkPacket<T>;
+            GamePacket<T> gamePacket = networkPacket as GamePacket<T>;
             UserPacketHeader userPacketHeader = new UserPacketHeader();
 
             userPacketHeader.id = currentPacketId++;
             userPacketHeader.senderId = senderId;
             userPacketHeader.objectId = objectId;
-            userPacketHeader.packetType = userNetworkPacket.userPacketType;
+            userPacketHeader.packetType = gamePacket.userPacketType;
 
             userPacketHeader.Serialize(stream);
         }

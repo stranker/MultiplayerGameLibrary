@@ -142,10 +142,16 @@ public class NetworkManager : MonoBehaviourSingleton<NetworkManager>, IReceiveDa
         }
     }
 
-    public void SendToClient(byte[] data, uint clientId)
+    public void SendToClient(byte[] data, IPEndPoint ipEndPoint)
     {
-        Debug.Log("Sending data to: " + clientId.ToString());
-        connection.Send(data, clients[clientId].ipEndPoint);
+        foreach (var ip in ipToId)
+        {
+            if (ip.Key == ipEndPoint)
+            {
+                connection.Send(data, clients[ip.Value].ipEndPoint);
+                break;
+            }
+        }
     }
 
     void Update()

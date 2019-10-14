@@ -2,17 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PositionsManager : MonoBehaviour
+public class PositionData
 {
-    // Start is called before the first frame update
-    void Start()
+    public float x;
+    public float y;
+    public float z;
+}
+
+public class PositionsManager : Singleton<PositionsManager>
+{
+    protected override void Initialize()
     {
-        
+        base.Initialize();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SendPosition(Vector3 position, uint senderId, uint objectId)
     {
-        
+        PositionPacket packet = new PositionPacket();
+        PositionData positionData = new PositionData();
+
+        packet.payload = positionData;
+
+        PacketsManager.Instance.SendPacket(packet, null, senderId, objectId);
     }
 }
