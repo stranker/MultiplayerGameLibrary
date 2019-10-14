@@ -3,7 +3,8 @@
 public enum UserPacketType
 {
     Message,
-    Position
+    Position,
+    Lobby
 }
 
 

@@ -30,6 +30,28 @@ public class PositionPacket : GamePacket<PositionData>
     }
 }
 
+public class LobbyPacket : GamePacket<LobbyData>
+{
+    public LobbyPacket() : base((ushort)UserPacketType.Lobby)
+    {
+    }
+
+    protected override void OnDeserialize(Stream stream)
+    {
+        BinaryReader br = new BinaryReader(stream);
+
+        LobbyData lobbyData = new LobbyData();
+        lobbyData.users = br.ReadString();
+        payload = lobbyData;
+    }
+
+    protected override void OnSerialize(Stream stream)
+    {
+        BinaryWriter bw = new BinaryWriter(stream);
+        bw.Write(payload.users);
+    }
+}
+
 public class StringMessagePacket : GamePacket<MessageData>
 {
     public StringMessagePacket() : base((ushort)UserPacketType.Message)

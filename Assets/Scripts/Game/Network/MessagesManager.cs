@@ -20,7 +20,7 @@ public class MessagesManager : Singleton<MessagesManager>
 
         StringMessagePacket packet = new StringMessagePacket();
         MessageData messageData = new MessageData();
-        messageData.username = "Test";
+        messageData.username = "";
         messageData.message = message;
 
         packet.payload = messageData;

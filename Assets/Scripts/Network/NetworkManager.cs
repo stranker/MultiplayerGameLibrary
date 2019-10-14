@@ -40,6 +40,7 @@ public class NetworkManager : MonoBehaviourSingleton<NetworkManager>, IReceiveDa
 
     private UdpConnection connection;
 
+    private List<string> userList = new List<string>();
     private readonly Dictionary<uint, Client> clients = new Dictionary<uint, Client>();
     private readonly Dictionary<IPEndPoint, uint> ipToId = new Dictionary<IPEndPoint, uint>();
 
@@ -67,8 +68,22 @@ public class NetworkManager : MonoBehaviourSingleton<NetworkManager>, IReceiveDa
         return true;
     }
 
-    public void BroadcastNewClient()
+    public Dictionary<uint, Client> GetClients()
     {
+        return clients;
+    }
+
+    public void AddUser(string username)
+    {
+        if (!userList.Contains(username))
+        {
+            userList.Add(username);
+        }
+    }
+
+    public List<string> GetUserList()
+    {
+        return userList;
     }
 
     public bool StartClient(IPAddress ip, int port, string username)
@@ -89,11 +104,6 @@ public class NetworkManager : MonoBehaviourSingleton<NetworkManager>, IReceiveDa
         }
 
         return true;
-    }
-
-    public Dictionary<uint, Client> GetClients()
-    {
-        return clients;
     }
 
     private void AddClient(IPEndPoint ip)

@@ -9,7 +9,6 @@ public class ChatScreen : MonoBehaviourSingleton<ChatScreen>
 {
     public Text messages;
     public InputField inputMessage;
-    public Text lobby;
     public string username = "";
 
     protected override void Initialize()
@@ -21,6 +20,7 @@ public class ChatScreen : MonoBehaviourSingleton<ChatScreen>
     void OnEnable()
     {
         PacketsManager.Instance.AddListener(0, OnReceivePacket);
+        Lobby.Instance.gameObject.SetActive(true);
     }
 
     void OnDisable()
@@ -45,7 +45,9 @@ public class ChatScreen : MonoBehaviourSingleton<ChatScreen>
 
         if (NetworkManager.Instance.isServer)
         {
+            NetworkManager.Instance.AddUser(username);
             MessagesManager.Instance.SendString(username, message, senderId, 0);
+            LobbyManager.Instance.SendUsers(NetworkManager.Instance.GetUserList(), senderId, 0);
         }
         messages.text += username + ":" + message + System.Environment.NewLine;
     }
