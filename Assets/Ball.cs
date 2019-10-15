@@ -12,7 +12,7 @@ public class Ball : MonoBehaviour
 
     void OnEnable()
     {
-        PacketsManager.Instance.AddListener(0, OnReceivePacket);
+        PacketsManager.Instance.AddListener(1, OnReceivePacket);
     }
 
     private void OnReceivePacket(ushort userPacketType, uint senderId, Stream stream)
@@ -25,17 +25,17 @@ public class Ball : MonoBehaviour
 
     private void ProcessPositionPacket(uint senderId, Stream stream)
     {
-        PositionPacket packet = new PositionPacket();
-        packet.Deserialize(stream);
         if (!NetworkManager.Instance.isServer)
         {
+            PositionPacket packet = new PositionPacket();
+            packet.Deserialize(stream);
             transform.position = new Vector3(packet.payload.position.x, packet.payload.position.y, packet.payload.position.z);
         }
     }
 
     void OnDisable()
     {
-        PacketsManager.Instance.RemoveListener(0);
+        PacketsManager.Instance.RemoveListener(1);
     }
 
     private void FixedUpdate()
